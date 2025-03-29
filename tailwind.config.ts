@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('tailwindcss').Config} */
 const {
 	default: flattenColorPalette,
 } = require('tailwindcss/lib/util/flattenColorPalette');
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
 	darkMode: ['class'],
@@ -33,6 +33,11 @@ module.exports = {
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))',
+				},
+				// TODO COME BACK TO IMPLEMENTING THEME
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))',
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
@@ -118,17 +123,44 @@ module.exports = {
 		require('tailwindcss-animate'),
 		require('tailwind-scrollbar-hide'),
 		addVariablesForColors,
+		plugin(addDarkModeBorders),
 	],
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function addVariablesForColors({ addBase, theme }: any) {
-	const allColors = flattenColorPalette(theme('colors'));
-	const newVars = Object.fromEntries(
-		Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+	let allColors = flattenColorPalette(theme('colors'));
+	let newVars = Object.fromEntries(
+		Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
 	);
 
 	addBase({
 		':root': newVars,
+	});
+}
+
+function addDarkModeBorders({ addBase }: any) {
+	addBase({
+		'.dark .border': {
+			'border-color': 'hsl(var(--muted))',
+		},
+
+		'.dark .border-t': {
+			'border-color': 'hsl(var(--muted))',
+		},
+		'.dark .border-r': {
+			'border-color': 'hsl(var(--muted))',
+		},
+		'.dark .border-b': {
+			'border-color': 'hsl(var(--muted))',
+		},
+		'.dark .border-l': {
+			'border-color': 'hsl(var(--muted))',
+		},
+		'.dark .border-x': {
+			'border-color': 'hsl(var(--muted))',
+		},
+		'.dark .border-y': {
+			'border-color': 'hsl(var(--muted))',
+		},
 	});
 }
