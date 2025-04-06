@@ -3,7 +3,6 @@ import pluginNext from '@next/eslint-plugin-next';
 import parser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
-import pluginQuery from '@tanstack/eslint-plugin-query';
 
 export default [
   // Ignore patterns
@@ -31,7 +30,6 @@ export default [
       '@next/next': pluginNext,
       '@typescript-eslint': tsPlugin,
       'import': importPlugin,
-      '@tanstack/query': pluginQuery,
     },
     files: ['**/*.{js,jsx,ts,tsx}'],
     settings: {

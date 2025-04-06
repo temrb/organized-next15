@@ -22,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<body
-				className={`${hubot.className} bg-background text-foreground h-[calc(100dvh)] w-full antialiased`}
+				className={`${hubot.className} h-[calc(100dvh)] w-full bg-background text-foreground antialiased`}
 			>
 				{children}
 			</body>
